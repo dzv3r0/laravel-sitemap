@@ -1,4 +1,6 @@
-<?php namespace Roumen\Sitemap;
+<?php
+
+namespace Roumen\Sitemap;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -19,22 +21,28 @@ class SitemapServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/../../views', 'sitemap');
-
         $config_file = __DIR__ . '/../../config/config.php';
-
         $this->mergeConfigFrom($config_file, 'sitemap');
-
-        $this->publishes([
+        $this->publishes(
+            [
             $config_file => config_path('sitemap.php')
-        ], 'config');
+            ],
+            'config'
+        );
 
-        $this->publishes([
+        $this->publishes(
+            [
             __DIR__ . '/../../views' => base_path('resources/views/vendor/sitemap')
-        ], 'views');
+            ],
+            'views'
+        );
 
-        $this->publishes([
+        $this->publishes(
+            [
             __DIR__ . '/../../public' => public_path('vendor/sitemap')
-        ], 'public');
+            ],
+            'public'
+        );
     }
 
     /**
@@ -44,14 +52,15 @@ class SitemapServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('sitemap', function ()
-        {
-            $config = config('sitemap');
+        $this->app->bind(
+            'sitemap',
+            function () {
+                $config = config('sitemap');
+                return new Sitemap($config);
+            }
+        );
 
-            return new Sitemap($config);
-        });
-
-        $this->app->alias('sitemap','Roumen\Sitemap\Sitemap');
+        $this->app->alias('sitemap', 'Roumen\Sitemap\Sitemap');
     }
 
     /**
