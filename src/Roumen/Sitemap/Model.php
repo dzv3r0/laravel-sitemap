@@ -1,15 +1,15 @@
-<?php namespace Roumen\Sitemap;
+<?php
+
+namespace Roumen\Sitemap;
 
 /**
  * Model class for laravel-sitemap package.
  *
- * @author Roumen Damianoff <roumen@dawebs.com>
+ * @author  Roumen Damianoff <roumen@dawebs.com>
  * @version 2.6.2
- * @link http://roumen.it/projects/laravel-sitemap
+ * @link    http://roumen.it/projects/laravel-sitemap
  * @license http://opensource.org/licenses/mit-license.php MIT License
  */
-
-use Illuminate\Support\Facades\Cache;
 
 class Model
 {
@@ -64,7 +64,7 @@ class Model
      *
      * @var string
      */
-    private $cacheKey = "laravel-sitemap.";
+    private $cacheKey = 'laravel-sitemap.';
 
     /**
      * Cache duration, can be int or timestamp
@@ -96,7 +96,7 @@ class Model
 
 
     /**
-     * Populating model variables from configuation file
+     * Populating model variables from configuration file
      *
      * @param array $config
      */
@@ -237,7 +237,7 @@ class Model
     /**
      * Returns $maxSize value
      *
-     * @param integer $maxSize
+     * @return int $maxSize
      */
     public function getMaxSize()
     {
@@ -248,29 +248,30 @@ class Model
     /**
      * Sets $escaping value
      *
-     * @param boolean $escaping
+     * @param $b boolean $escaping
+     * @return void
      */
     public function setEscaping($b)
     {
         $this->escaping = $b;
     }
 
-
     /**
      * Adds item to $items array
      *
-     * @param array $item
+     * @param $items
+     * @return void
      */
     public function setItems($items)
     {
         $this->items[] = $items;
     }
 
-
     /**
      * Adds sitemap to $sitemaps array
      *
      * @param array $sitemap
+     * @return void
      */
     public function setSitemaps($sitemap)
     {
@@ -282,6 +283,7 @@ class Model
      * Sets $title value
      *
      * @param string $title
+     * @return void
      */
     public function setTitle($title)
     {
@@ -293,6 +295,7 @@ class Model
      * Sets $link value
      *
      * @param string $link
+     * @return void
      */
     public function setLink($link)
     {
@@ -304,6 +307,7 @@ class Model
      * Sets $useStyles value
      *
      * @param boolean $useStyles
+     * @return void
      */
     public function setUseStyles($useStyles)
     {
@@ -315,6 +319,7 @@ class Model
      * Sets $sloc value
      *
      * @param string $sloc
+     * @return void
      */
     public function setSloc($sloc)
     {
@@ -326,6 +331,7 @@ class Model
      * Sets $useLimitSize value
      *
      * @param boolean $useLimitSize
+     * @return void
      */
     public function setUseLimitSize($useLimitSize)
     {
@@ -337,6 +343,7 @@ class Model
      * Sets $maxSize value
      *
      * @param integer $maxSize
+     * @return void
      */
     public function setMaxSize($maxSize)
     {
@@ -347,8 +354,9 @@ class Model
     /**
      * Limit size of $items array to 50000 elements (1000 for google-news)
      *
+     * @param int $max
      */
-    public function limitSize($max=50000)
+    public function limitSize($max = 50000)
     {
         $this->items = array_slice($this->items, 0, $max);
     }
@@ -358,8 +366,9 @@ class Model
      * Reset $items array
      *
      * @param array $items
+     * @return void
      */
-    public function resetItems($items=[])
+    public function resetItems($items = [])
     {
         $this->items = $items;
     }
@@ -370,7 +379,7 @@ class Model
      *
      * @param array $sitemaps
      */
-    public function resetSitemaps($sitemaps=[])
+    public function resetSitemaps($sitemaps = [])
     {
         $this->sitemaps = $sitemaps;
     }
@@ -380,33 +389,32 @@ class Model
      * Set use cache value
      *
      * @param boolean $useCache
+     * @return void
      */
     public function setUseCache($useCache)
     {
         $this->useCache = $useCache;
     }
 
-
     /**
      * Set cache key value
      *
      * @param string $cacheKey
+     * @return void
      */
     public function setCacheKey($cacheKey)
     {
         $this->cacheKey = $cacheKey;
     }
 
-
     /**
      * Set cache duration value
      *
      * @param Carbon|Datetime|int $cacheDuration
+     * @return void
      */
     public function setCacheDuration($cacheDuration)
     {
         $this->cacheDuration = $cacheDuration;
     }
-
-
 }
